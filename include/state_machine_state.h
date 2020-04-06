@@ -5,6 +5,8 @@
 #ifndef ESP_LIB_STATE_MACHINE_STATE_H
 #define ESP_LIB_STATE_MACHINE_STATE_H
 
+#include "locator.h"
+
 template<typename T>
 struct state_machine_state {
     using StateMachine = T;
@@ -26,6 +28,14 @@ struct state_machine_state {
 
     constexpr inline void trigger(event_t e) {
         state_machine->template trigger(e);
+    }
+
+    locator& get_locator() {
+        return *reinterpret_cast<locator*>(state_machine);
+    }
+
+    [[nodiscard]] locator& get_locator() const {
+        return *reinterpret_cast<locator*>(state_machine);
     }
 
     T *state_machine;

@@ -9,8 +9,9 @@ include_directories(include)
 add_library(esml src/statemachine.cpp)
 
 if (BUILD_EXAMPLES)
-    include_directories(examples/basic/include)
-    add_executable(example_basic examples/basic/src/main.cpp)
+    add_subdirectory(examples)
+endif ()
 
-    target_link_libraries(example_basic esml)
+if (BUILD_TESTS)
+    add_subdirectory(test)
 endif ()

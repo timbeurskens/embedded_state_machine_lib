@@ -10,7 +10,8 @@ template <typename T::Events E> \
 auto on() -> typename std::enable_if_t<E == EVENT>
 
 #define STATE_INIT \
-using state_machine_state<T>::state_machine_state;
+using state_machine_state<T>::state_machine_state; \
+using state_machine_state<T>::get_locator;
 
 #define HANDLES(EVENTS) \
 STATE_INIT \
