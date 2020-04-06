@@ -1,0 +1,19 @@
+peripherals can emit events (pin rising, pin falling, etc)
+state machine can map peripheral events to state machine events (n to 1 mapping?)
+state machine has an internal transition table (independent from external events, event mapping creates dependence)
+
+state structure:
+state initial {
+
+on <event 1> {
+// do stuff
+}
+
+on <event 2> {
+// do stuff
+}
+
+on <door open> {
+ goto<state_2>();
+}
+}
