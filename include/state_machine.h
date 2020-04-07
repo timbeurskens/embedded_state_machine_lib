@@ -10,6 +10,7 @@
 #include <state_machine_state.h>
 #include <c_events.h>
 #include <event_store.h>
+#include <locator.h>
 
 template<template<typename> typename ... States>
 struct c_states {
@@ -21,14 +22,14 @@ struct c_states {
 
 template<template<typename> typename Initial_State,
         typename StateContainer, typename EventContainer>
-struct state_machine : locator {
+struct state_machine : public locator {
     using Events = typename EventContainer::event_t;
     using StateMachineEventList = EventContainer;
     using StateMachineStateList = StateContainer;
 
     using current_state_container_t = typename StateContainer::template state_container_t<state_machine>;
 
-    state_machine() : current_state(Initial_State<state_machine>{this}) {}
+    state_machine() : current_state(std::in_place_type<Initial_State<state_machine>>, this) {} // Initial_State<state_machine>{this}
 
     state_machine(const state_machine &) = delete;
 
