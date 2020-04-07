@@ -6,14 +6,17 @@
 #include <states/led_on.hpp>
 #include <blinking_events.h>
 
+// specify the state machine type
 using basic_state_machine_t = state_machine<
         // initial state:
         led_off,
+
         // specify all possible states in the machine
         LIST_STATES(
             led_off,
             led_on
         ),
+
         // specify all events in the machine
         LIST_EVENTS(
             // enum type
